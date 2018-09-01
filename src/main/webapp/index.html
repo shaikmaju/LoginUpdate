@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Get Details</title>
+     <script src="./client.js"></script>
+</head>
+
+<body>
+    Channel:
+    <input type="text" value="web" id="channel" style="width: 25px">
+    <br>
+    <h3>LOGIN</h3>
+    User Name:
+    <input type="text" value="shaik.maju96@idaasnextdemo2.ilantus.com" id="userid" style="width: 200px"><br><br>
+    Password:
+    <input type="text" value="BArvn2PR" id="password" style="width: 200px"><br><br>
+    Status:<input type="checkbox" id="active" checked> Active
+    		<input type="checkbox" id="deactive" checked> DeActive<br><br>
+    <input type="button" id="loginButton" value="Login" onclick="javascript:login.sendLogin(this)">
+    <br>
+    <h4>Add User</h4>
+    First Name : <input type="text" value="1" id="addUserFirstName" style="width: 100px"><br><br>
+    Last Name : <input type="text" value="" id="addUserLastName" style="width: 100px"><br><br>
+    User Name : <input type="text" value="" id="addUserUserName" style="width: 100px">@idaasnextdemo2.ilantus.com<br><br>
+    Primary Email : <input type="text" value="" id="addUserPrimaryEmail" style="width: 100px"><br><br>
+    Secondary Email : <input type="text" value="" id="addUserSecondaryEmail" style="width: 100px"><br><br>
+    Mobile No : <input type="text" value="" id="addUserMobile" style="width: 100px"> (including country code) like "+91-9966819633"<br><br>
+    Designation : <input type="text" value="" id="addUserDesignation" style="width: 100px"><br><br>
+    <input type="button" id="addUser" value="Add user" onclick="javascript:user.addUser(this)">
+    <br>
+    <h4>Get Users Based On Filter</h4>
+    FilterId List: <input type="text" value="1,2,3,4,5" id="getUsersFilterId" style="width: 100px">Values : 1,2,3,4,5<br><br>
+    <input type="button" id="getUsersByFilterId" value="Get users List" onclick="javascript:user.getUsersByFilterId(this)">
+    <h4>Get All UserDetails</h4>
+    <input type="button" id="getUserDetailsList" value="Get All Users List" onclick="javascript:user.getAllUsersDetails(this)">
+    <br>
+    <h4>Get User Details By Id : </h4>
+    User Id : <input type="text" value="1" id="getUserDetailsId" style="width: 100px"> Valid user id
+    <br><br>
+    <input type="button" id="getUserDetailsButton" value="Get User Details" onclick="javascript:user.getUserDetailsById(this)">
+    <br>
+    <h4>Update User</h4>
+    User Id : <input type="text" value="1" id="updateUserId" style="width: 100px"> Valid user id<br><br>
+    First Name : <input type="text" value="1" id="updateUserFirstName" style="width: 100px"><br><br>
+    Last Name : <input type="text" value="" id="updateUserLastName" style="width: 100px"><br><br>
+    User Name : <input type="text" value="" id="updateUserUserName" style="width: 100px"><br><br>
+    Primary Email : <input type="text" value="" id="updateUserPrimaryEmail" style="width: 100px"><br><br>
+    Secondary Email : <input type="text" value="" id="updateUserSecondaryEmail" style="width: 100px"><br><br>
+    Mobile No : <input type="text" value="" id="updateUserMobile" style="width: 100px"> (including country code) like "+91-9966819633"<br><br>
+    Designation : <input type="text" value="" id="updateUserDesignation" style="width: 100px"><br><br>
+    <input type="button" id="updateUser" value="Update user" onclick="javascript:user.updateUsers(this)">
+    <br>
+    <h4>Logout</h4>
+    <input type="button" id="logoutButton" value="Logout" onclick="javascript:logout.logout(this)">
+
+</body>
+
+</html>

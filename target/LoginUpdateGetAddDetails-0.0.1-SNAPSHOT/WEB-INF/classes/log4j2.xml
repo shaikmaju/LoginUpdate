@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="TRACE" name="Base64ProgramLogger" monitorInterval="600">
+	<Properties>
+        <Property name="filename">Base64.log</Property>
+        <Property name="log-path">F:\LogsFiles</Property>
+    </Properties>
+ <Appenders>
+  <Console name="console-log" target="SYSTEM_OUT">
+   <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n" />
+  </Console>
+
+<RollingRandomAccessFile name="common"
+        fileName="${log-path}/${filename}"
+        filePattern="logs/$${date:yyyy-MM-dd}/aye.root-%d{yyyy-MM-dd-HH}-%i.log.gz">
+        <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n" />
+        <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+                <SizeBasedTriggeringPolicy size="10 MB" />
+        </Policies>
+        <!-- This rollover strategy will keep up to 20 files before removing them -->
+        <DefaultRolloverStrategy max="20" />
+</RollingRandomAccessFile>
+</Appenders>
+
+<Loggers>
+        <Logger name="iDaas" level="debug">
+                <AppenderRef ref="common" level="debug" />
+        </Logger>
+        <Root level="trace" additivity="true">
+                <AppenderRef ref="console-log" level="debug"/>
+        </Root>
+</Loggers>
+</Configuration>
