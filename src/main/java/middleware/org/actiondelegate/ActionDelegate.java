@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import middleware.org.actionclasses.Adduser;
 import middleware.org.actionclasses.GetUserDetails;
+import middleware.org.actionclasses.GetUsersDetailsBasedOnFilter;
 import middleware.org.actionclasses.GetUsersDetailsById;
 import middleware.org.actionclasses.LoginDetails;
 import middleware.org.actionclasses.Logout;
@@ -24,6 +25,8 @@ import middleware.org.models.GetAllUsersDetailsReq;
 import middleware.org.models.GetAllUsersDetailsRes;
 import middleware.org.models.GetUsersByIdReq;
 import middleware.org.models.GetUsersByIdRes;
+import middleware.org.models.GetUsersDetailsByFilterReq;
+import middleware.org.models.GetUsersDetailsByFilterRes;
 import middleware.org.models.LoginReq;
 import middleware.org.models.LoginRes;
 import middleware.org.models.LogoutReq;
@@ -48,7 +51,7 @@ public class ActionDelegate {
 				String password = ((LoginReq) pojo).getPassword();
 				String transcationId = ((LoginReq) pojo).getTransactionId();
 				List<?> satatus = ((LoginReq) pojo).getStatus();
-				LoginRes loginRes = new LoginDetails().login(userName, password, transcationId, satatus);
+				LoginRes loginRes = new LoginDetails().login(userName, password, transcationId, satatus,request);
 				rtnPojo = loginRes;
 				genResp.setResponseCode(loginRes.getResponseCode());
 				genResp.setErrorCode(loginRes.getErrorCode());
@@ -83,7 +86,14 @@ public class ActionDelegate {
 				rtnPojo = getUsersByIdRes;
 				genResp.setResponseCode(getUsersByIdRes.getResponseCode());
 				genResp.setErrorCode(getUsersByIdRes.getErrorCode());
-			} else if (pojo instanceof UpdateUsers) {
+			} else if (pojo instanceof GetUsersDetailsByFilterReq) {
+				LOG.info("GetUsersDetailsByFilterReq class is called.....");
+				List<?> UserId = ((GetUsersDetailsByFilterReq) pojo).getFilterIdList();
+				GetUsersDetailsByFilterRes getUsersByIdRes = new GetUsersDetailsBasedOnFilter().getDetailsByFilter(UserId);
+				rtnPojo = getUsersByIdRes;
+				genResp.setResponseCode(getUsersByIdRes.getResponseCode());
+				genResp.setErrorCode(getUsersByIdRes.getErrorCode());
+			}else if (pojo instanceof UpdateUsers) {
 				LOG.info("UpdateUsersReq class is called.....");
 				UpdateUsersDetails updateUsersDetails = ((UpdateUsers) pojo).getUpdateUsersList();
 				String transcationId1 = ((UpdateUsers) pojo).getTransactionId();

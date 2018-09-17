@@ -12,8 +12,8 @@ public class Test {
 
 	public static void main(String[] args) throws IOException {
 		 JCodeModel codeModel = new JCodeModel();
-        URL source = new URL("file:///F:\\Mrcubes\\Json\\UpdateUsersResSchema.schema");
-        new SchemaMapper().generate(codeModel, "UpdateUsersRes", "middleware.org.models", source);
+        URL source = new URL("file:///F:\\Mrcubes\\Json\\GetAllUsersDetailsByFilterReqSchema.schema");
+        new SchemaMapper().generate(codeModel, "GetUsersDetailsByFilterReq", "middleware.org.models", source);
         codeModel.build(new File("F:\\MrcubesMainProject\\LoginUpdateGetAddDetails\\src\\main\\java"));
 	}
 

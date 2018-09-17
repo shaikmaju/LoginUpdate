@@ -10,31 +10,31 @@ import org.skife.jdbi.v2.Query;
 
 import middleware.org.connectionpool.ConnectionPool;
 import middleware.org.constants.ApplicationConstants;
-import middleware.org.models.GetUsersByIdReq;
-import middleware.org.models.GetUsersByIdRes;
+import middleware.org.models.GetUsersDetailsByFilterReq;
+import middleware.org.models.GetUsersDetailsByFilterRes;
 
 public class GetUsersDetailsBasedOnFilter {
 	private static final Logger LOG = LogManager.getLogger(GetUsersDetailsById.class);
 
 	Handle handle = null;
-	GetUsersByIdRes getUsersByIdRes = null;
-	GetUsersByIdReq getUsersByIdReq = null;
+	GetUsersDetailsByFilterRes getUsersByFilterRes = null;
+	GetUsersDetailsByFilterReq getUsersByFilterReq = null;
 	String transactionId = null;
 
-	public GetUsersByIdRes getDetailsById(int userId) {
+	public GetUsersDetailsByFilterRes getDetailsByFilter(List<?> userId) {
 		try {
-			getUsersByIdReq = new GetUsersByIdReq();
+			getUsersByFilterReq = new GetUsersDetailsByFilterReq();
 			// BigMsgGenReq us = new BigMsgGenReq();
-			transactionId = getUsersByIdReq.getTransactionId();
-			if (getUsersByIdRes == null)
-				getUsersByIdRes = new GetUsersByIdRes();
-			getUsersByIdRes.setModelId(ApplicationConstants.GET_USER_FILTER_BY_ID_RESPONSE_MODELID);
-			getUsersByIdRes.setTransactionId(transactionId);
+			transactionId = getUsersByFilterReq.getTransactionId();
+			if (getUsersByFilterRes == null)
+				getUsersByFilterRes = new GetUsersDetailsByFilterRes();
+			getUsersByFilterRes.setModelId(ApplicationConstants.GET_USER_FILTER_BY_ID_RESPONSE_MODELID);
+			getUsersByFilterRes.setTransactionId(transactionId);
 			handle = ConnectionPool.getConnection();
-			Query<Map<String, Object>> q = handle.createQuery(ApplicationConstants.GET_DETAILS_BY_ID_QUERY);
+			Query<Map<String, Object>> q = handle.createQuery(ApplicationConstants.GET_USER_FILTER_BY_ID_QUERY);
 			List<Map<String, Object>> listOfUserDetailsById = q.bind(0, userId).list();
 
-			getUsersByIdRes.setUsersList(listOfUserDetailsById);
+			getUsersByFilterRes.setUsersList(listOfUserDetailsById);
 
 		} catch (Exception se) {
 
@@ -46,7 +46,7 @@ public class GetUsersDetailsBasedOnFilter {
 			}
 		}
 
-		return getUsersByIdRes;
+		return getUsersByFilterRes;
 	}
 
 }

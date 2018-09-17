@@ -3,6 +3,9 @@ package middleware.org.actionclasses;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.skife.jdbi.v2.Handle;
@@ -21,7 +24,8 @@ public class LoginDetails {
 	ObjectMapper om = new ObjectMapper();
 	Object getBySingle = null;
 
-	public LoginRes login(String userName, String password, String transactionId, List<?> status) {
+	public LoginRes login(String userName, String password, String transactionId, List<?> status,
+			HttpServletRequest request) {
 		try {
 			LOG.info("The LoginDetails class is called....");
 			LoginReq loginReq = new LoginReq();
@@ -41,7 +45,10 @@ public class LoginDetails {
 				Object pass1 = out.get("password");
 				Object email1 = out.get("username");
 				if ((userName.equals(email1)) && (password.equals(pass1))) {
-
+					HttpSession session = request.getSession();
+					session.setAttribute("email", email1);
+					session.setAttribute("password", pass1);
+					System.out.println("Session is=" + session);
 					if (loginRes == null)
 						loginRes = new LoginRes();
 					loginRes.setModelId(ApplicationConstants.LOGIN_RESPONSE_MODELID);

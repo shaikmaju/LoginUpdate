@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="TRACE" name="Base64ProgramLogger" monitorInterval="600">
 	<Properties>
-        <Property name="filename">Base64.log</Property>
+        <Property name="filename">LoginUpdate.log</Property>
         <Property name="log-path">F:\LogsFiles</Property>
     </Properties>
  <Appenders>

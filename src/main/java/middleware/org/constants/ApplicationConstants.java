@@ -46,5 +46,6 @@ public class ApplicationConstants {
 	public static final String GET_USERS_BY_NAME = " select DISTINCT userId from usersdetails";
 	public static final String GET_DETAILS_BY_ID_QUERY = "select * from usersdetails where userId=?";
 	public static final String UPDATE_DETAILS_QUERY = "update  usersdetails set firstName=?,lastName=?,primaryEmail=?,contactNumber=?,userName=?,Designation=?,secondaryEmail=? where userId=?";
+	public static final String GET_USER_FILTER_BY_ID_QUERY = "select * from usersdetails where userId IN(?)";
 
 }

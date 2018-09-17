@@ -15,6 +15,7 @@ import middleware.org.models.BigMsgGenReq;
 import middleware.org.models.BigMsgGenRes;
 import middleware.org.models.GetAllUsersDetailsReq;
 import middleware.org.models.GetUsersByIdReq;
+import middleware.org.models.GetUsersDetailsByFilterReq;
 import middleware.org.models.LoginReq;
 import middleware.org.models.LogoutReq;
 import middleware.org.models.UpdateUsers;
@@ -55,6 +56,10 @@ public class JsontoPojoConventor {
 				UpdateUsers updateUsersReq = mapper.readValue(json, UpdateUsers.class);
 				genResp.setModelId(ApplicationConstants.UPDATE_USER_RESPONSE_MODELID);
 				mappedPojo = updateUsersReq;
+			} else if (genericPojo.getModelId() == ApplicationConstants.GET_USER_FILTER_BY_ID_REQUEST_MODELID) {
+				GetUsersDetailsByFilterReq getUsersDetailsByFilterReq = mapper.readValue(json, GetUsersDetailsByFilterReq.class);
+				genResp.setModelId(ApplicationConstants.GET_USER_FILTER_BY_ID_RESPONSE_MODELID);
+				mappedPojo = getUsersDetailsByFilterReq;
 			} else if (genericPojo.getModelId() == ApplicationConstants.LOGOUT_REQUEST_MODELID) {
 				LogoutReq logoutReq = mapper.readValue(json, LogoutReq.class);
 				genResp.setModelId(ApplicationConstants.LOGOUT_RESPONSE_MODELID);
